@@ -1,0 +1,8 @@
+Options -Indexes
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /mymvc/routes/index.php?path=$1 [NC,L,QSA]
+
+ErrorDocument 403 /mymvc/routes/index.php
