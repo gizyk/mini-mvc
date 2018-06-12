@@ -9,32 +9,38 @@
         }
 
         public function getAll() {
-            return new sqlBuilder($this->table, 'SELECT * FROM ' .$this->table);  
+            $this->sqlString .=  'SELECT * FROM ' .$this->table;
+            return $this;
         }
 
         public function get($args) {
             $arguments = buildStrngFromArguments($args);
-            return new sqlBuilder($this->table, 'SELECT' .$arguments. 'FROM ' .$this->table); 
+            $this->sqlString .= 'SELECT' .$arguments. 'FROM ' .$this->table;
+            return $this;
         }
 
         public function exec() {
-            return$this->sqlString;
+            return $this->sqlString;
         }
 
         public function where($key, $value, $compare) {
-            return new sqlBuilder($this->table, $this->sqlString . ' WHERE ' .$key.$compare."'".$value."'");
+            $this->sqlString .= ' WHERE ' .$key.$compare."'".$value."'";
+            return $this;
         }
 
         public function and($key, $value, $compare) {
-            return new sqlBuilder($this->table, $this->sqlString . ' AND ' .$key.$compare.$value);
+            $this->sqlString .= ' AND ' .$key.$compare.$value;
+            return $this;
         }
 
         public function or($key, $value, $compare) {
-            return new sqlBuilder($this->table, $this->sqlString . ' OR ' .$key.$compare.$value);
+            $this->sqlString .= ' OR ' .$key.$compare.$value;
+            return $this;
         }
 
         public function orderBy($condition) {
-            return new sqlBuilder($this->table, $this->sqlString . ' ORDER BY ' .$condition);
+            $this->sqlString .= ' ORDER BY ' .$condition;
+            return $this;
         }
     } 
 ?>

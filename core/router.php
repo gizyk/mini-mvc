@@ -1,6 +1,6 @@
 <?php
     abstract class Router {
-        public function Get($path, $controller) {
+        public function get($path, $controller) {
             if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($GLOBALS['found'])) {
                 $realpath = Utils::parsedPath();            //Path from GET looks like 'foo\/bar' so in order to work with 'foo/bar' it is  necessary to clean path out.
                 $args = [];
@@ -20,7 +20,7 @@
             }
         }
 
-        public function Post($path, $controller) {
+        public function post($path, $controller) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $realpath = Utils::parsedPath();
                 if($path == $realpath) {

@@ -1,9 +1,8 @@
 <?php
-    require_once('../config/database.php');
-
     abstract class Model {
         public function setup() {
-            return new PDO(DataBase::getDsn(),DataBase::$user, DataBase::$pass, DataBase::$opt);
+            $database = require('../config/database.php');
+            return new PDO($database["dsn"],$database["user"], $database["pass"], $database["opt"]);
         }
 
         public function get($sql) {
